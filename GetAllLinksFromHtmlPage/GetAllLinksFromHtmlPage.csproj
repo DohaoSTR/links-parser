@@ -47,11 +47,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include=".htaccess" />
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="main.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

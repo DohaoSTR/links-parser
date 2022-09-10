@@ -3,57 +3,58 @@ using System.Collections.Generic;
 using System.Net;
 using System.Text.RegularExpressions;
 
-namespace GetAllLinksFromHtmlPage
+namespace LinksParser
 {
     public class Program
     {
-        private static readonly OutMethod writeLine = Console.WriteLine;
-        private static readonly InMethod readLine = Console.ReadLine;
+        private static readonly OutMethod _writeLine = Console.WriteLine;
+        private static readonly InMethod _readLine = Console.ReadLine;
 
-        private delegate void OutMethod(string str);
+        private delegate void OutMethod(string inputString);
+
         private delegate string InMethod();
 
         public static void Main()
         {
-            string url = SplitParams(readLine())["urlInput"];
+            string url = SplitParams(_readLine())["urlInput"];
 
             url = Uri.UnescapeDataString(url);
 
-            writeLine("Content-Type: text/html\n\n");
-            writeLine("<html>\n<head>");
-            writeLine("\t<title>LAB_CGI</title>");
-            writeLine("</head>\n");
-            writeLine("<body>\n");
-            writeLine("<p>Все ссылки располагающиеся на указанном сайте: " + url + "</p>\n"); ;
-            writeLine("<ol>\n");
+            _writeLine("Content-Type: text/html\n\n");
+            _writeLine("<html>\n<head>");
+            _writeLine("\t<title>LAB_CGI</title>");
+            _writeLine("</head>\n");
+            _writeLine("<body>\n");
+            _writeLine("<p>Все ссылки располагающиеся на указанном сайте: " + url + "</p>\n"); ;
+            _writeLine("<ol>\n");
 
             string html = GetHtmlCode(url);
 
             foreach (string link in GetAllLinks(html, url))
             {
-                writeLine("<li>\n<a href = \"" + link + "\">\n" + link + "</a>\n</li>\n");
+                _writeLine("<li>\n<a href = \"" + link + "\">\n" + link + "</a>\n</li>\n");
             }
 
-            writeLine("</ol>\n");
-            writeLine("</body>\n</html>");
+            _writeLine("</ol>\n");
+            _writeLine("</body>\n</html>");
         }
 
-        private static Dictionary<string, string> SplitParams(string stringWithParams)
+        private static Dictionary<string, string> SplitParams(string stringParams)
         {
             Dictionary<string, string> result = new Dictionary<string, string>();
 
-            if (string.IsNullOrWhiteSpace(stringWithParams))
+            if (string.IsNullOrWhiteSpace(stringParams))
             {
                 return result;
             }
 
-            string[] ps = stringWithParams.Split('&');
-            string[] a;
+            string[] arrayParams = stringParams.Split('&');
+            string[] arraySplitParams;
 
-            foreach (string p in ps)
+            foreach (string parametr in arrayParams)
             {
-                a = p.Split('=');
-                result.Add(a[0], a[1]);
+                arraySplitParams = parametr.Split('=');
+                result.Add(arraySplitParams[0], arraySplitParams[1]);
             }
 
             return result;
@@ -100,4 +101,3 @@ namespace GetAllLinksFromHtmlPage
         }
     }
 }
-

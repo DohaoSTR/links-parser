@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{FF4D725C-AC77-4D0E-8059-62D80BCC6F07}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>GetAllLinksFromHtmlPage</RootNamespace>
-    <AssemblyName>GetAllLinksFromHtmlPage</AssemblyName>
+    <RootNamespace>LinksParser</RootNamespace>
+    <AssemblyName>LinksParser</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
